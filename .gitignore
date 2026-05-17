@@ -1,0 +1,31 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+.env
+.venv
+
+# Database files
+*.db
+*.sqlite3
+chat.db
+chat_history.db
+
+# Model files (Very large, should not be on GitHub)
+models/
+*.gguf
+
+# IDE / OS files
+.idea/
+.vscode/
+desktop.ini
+.DS_Store
+
+# Logs
+*.log
+pip_install_log.txt
+kurulum.txt

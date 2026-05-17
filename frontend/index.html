@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yerel AI Sohbet Uygulaması</title>
+    <!-- Font Awesome ikonları için CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Kendi stil dosyamız -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <!-- API Anahtarı Giriş Modalı -->
+    <div id="api-key-modal" class="modal">
+        <div class="modal-content">
+            <h2 class="modal-title">API Anahtarını Girin</h2>
+            <p>Devam etmek için API anahtarınızı girin. Bu anahtar, sunucuya yapılan her istekte kullanılacaktır.</p>
+            <input type="password" id="api-key-input" placeholder="API Anahtarı" />
+            <p id="api-key-error" class="error-message"></p>
+            <button id="api-key-submit">Gönder</button>
+        </div>
+    </div>
+
+    <!-- Özel Alert Modalı -->
+    <div id="custom-alert-modal" class="modal hidden">
+        <div class="modal-content alert-modal">
+            <h2 id="custom-alert-title" class="modal-title"></h2>
+            <p id="custom-alert-message"></p>
+            <button id="custom-alert-close-button" class="modal-close-button">Tamam</button>
+        </div>
+    </div>
+
+    <!-- Özel Confirm Modalı -->
+    <div id="custom-confirm-modal" class="modal hidden">
+        <div class="modal-content confirm-modal">
+            <h2 id="custom-confirm-title" class="modal-title"></h2>
+            <p id="custom-confirm-message"></p>
+            <div class="modal-button-group">
+                <button id="custom-confirm-yes-button" class="modal-confirm-button">Evet</button>
+                <button id="custom-confirm-no-button" class="modal-cancel-button">Hayır</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ana Uygulama Alanı -->
+    <div class="chat-app" id="main-content">
+        <!-- Sohbet Listesi Paneli -->
+        <div class="conversation-list-panel">
+            <div class="header">
+                <h2>Sohbetler</h2>
+            </div>
+            <ul id="conversation-list" class="conversation-list">
+                <!-- Sohbet listesi JavaScript ile buraya eklenecek -->
+            </ul>
+            <div class="new-chat-button-container">
+                <button id="new-chat-button" class="new-chat-button">
+                    <i class="fas fa-plus"></i> Yeni Sohbet
+                </button>
+                <button id="delete-conversation-button" class="delete-conversation-button" style="display: none;">
+                    <i class="fas fa-trash"></i> Sil
+                </button>
+            </div>
+        </div>
+        
+        <!-- Sohbet Kutusu Paneli -->
+        <div class="chat-box-panel">
+            <div class="chat-header">
+                <h3 id="current-conversation-title">AI Sohbet</h3>
+                <div class="model-select-container">
+                    <label for="ai-model-select">Model:</label>
+                    <select id="ai-model-select"></select>
+                </div>
+            </div>
+            <div id="chat-box" class="chat-box">
+                <div class="chat-initial-message">
+                    <p>Merhaba! Başlamak için bir mesaj yazın veya yeni bir sohbet başlatın.</p>
+                </div>
+            </div>
+            
+            <!-- Yükleniyor Göstergesi -->
+            <div id="loading-indicator" class="loading-indicator" style="display: none;">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+
+            <div class="input-area">
+                <input type="text" id="user-input" placeholder="Mesajınızı buraya yazın...">
+                <button id="send-button">
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                    Gönder
+                </button>
+                <button id="voice-input-button">
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                        <line x1="12" y1="19" x2="12" y2="22"></line>
+                    </svg>
+                    Sesli Giriş
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
